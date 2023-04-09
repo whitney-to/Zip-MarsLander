@@ -57,24 +57,29 @@ public class Vehicle {
     public int computeDeltaV() {
         // return velocity + gravity - burn amount
         return Velocity + Gravity - Burn;
+        // this is new velocity
     }
 
     public void adjustForBurn(int burnAmount) {
         // set burn to burnamount requested
         Burn = burnAmount;
+
         // save previousAltitude with current Altitude
         PrevAltitude = Altitude;
+
         // set new velocity to result of computeDeltaV function.
         Velocity = computeDeltaV();
+
         // subtract speed from Altitude
         Altitude -= Velocity;
+
         // subtract burn amount fuel used from tank
         Fuel -= burnAmount;
     }
 
     public boolean stillFlying() {
         // return true if altitude is positive
-        return Altitude > 0;
+        return Altitude >= 0;
     }
     public boolean outOfFuel() {
         // return true if fuel is less than or equal to zero
